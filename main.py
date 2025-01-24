@@ -65,11 +65,12 @@ def load_events(cloud_event):
             #do nothing event type not understood
             pass
 
-        #delete source blon 
+        #delete source blob since it has been copied to archive folder
         source_bucket.delete_blob(blob.name)
             
 
 def load_data_to_bq_event1():
+    # reference https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#appending_to_or_overwriting_a_table_with_avro_data
     # Construct a BigQuery client object.
     client = bigquery.Client()
 
@@ -104,6 +105,7 @@ def load_data_to_bq_event1():
     print("Loaded {} rows.".format(destination_table.num_rows))
 
 def load_data_to_bq_event2():
+    # reference https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro#appending_to_or_overwriting_a_table_with_avro_data
     # Construct a BigQuery client object.
     client = bigquery.Client()
 
